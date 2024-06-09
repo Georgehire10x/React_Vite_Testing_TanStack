@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-[2.125rem] sm:text-[1.5rem];
+  }
+  h2 {
+    @apply text-[1.875rem] sm:text-[1.125rem];
+  }
+  h3 {
+    @apply text-[2.125rem] sm:text-[1.5rem];
+  }
+  h4 {
+    @apply text-[2.125rem] sm:text-[1.5rem];
+  }
+  h5 {
+    @apply text-[2.125rem] sm:text-[1.5rem];
+  }
+  h6 {
+    @apply text-[2.125rem] sm:text-[1.5rem];
+  }
+}

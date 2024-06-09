@@ -1,0 +1,42 @@
+name: BackstopJS Visual Regression Testing
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  visual-regression-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.13.1'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      - name: Run BackstopJS reference (only on main branch)
+        if: github.ref == 'refs/heads/main'
+        run: npx backstop reference
+
+      - name: Run BackstopJS tests
+        run: npx backstop test
+
+      - name: Upload BackstopJS report
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: backstopjs-report
+          path: backstop_data/html_report
